@@ -1,0 +1,413 @@
+<html>
+  <head>
+    <title>Minor project voting application</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="votingPage.css" />
+
+    <script
+      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="text/javascript"
+    ></script>
+
+	<script type="module">
+		import { ethers } from "https://cdn.ethers.io/lib/ethers-5.2.esm.min.js";
+	</script>
+
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+type="application/javascript"></script>
+
+  </head>
+  <body>
+    <script>
+      window.onload = function () {
+        getVotes();
+      };
+
+      function getVotes() {
+
+        abi = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "delegate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "voter",
+				"type": "address"
+			}
+		],
+		"name": "giveRightToVote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposal",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "chairperson",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "proposals",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "voteCount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "voters",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "weight",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "voted",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "delegate",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vote",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "winnerName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "winnerName_",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "winningProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "winningProposal_",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+        
+        const provider = new ethers.providers.Web3Provider(web3.currentProvider);
+        contract = new ethers.Contract("0x960Ce5E04A3529b0167bB151ED86CBbad5321524",abi,provider);
+
+        var proposal0 = contract.proposals(0);
+        proposal0.then(function (result) {
+          document.getElementById("proposal0name").innerHTML = result[0];
+          document.getElementById("vote0count").innerHTML = result[1];
+        });
+
+        var proposal1 = contract.proposals(1);
+        proposal1.then(function (result) {
+          document.getElementById("proposal1name").innerHTML = result[0];
+          document.getElementById("vote1count").innerHTML = result[1];
+        });
+
+        var proposal2 = contract.proposals(2);
+        proposal2.then(function (result) {
+          document.getElementById("proposal2name").innerHTML = result[0];
+          document.getElementById("vote2count").innerHTML = result[1];
+        });
+      }
+
+      function vote() {
+		
+        abi = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "delegate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "voter",
+				"type": "address"
+			}
+		],
+		"name": "giveRightToVote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "proposal",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "chairperson",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "proposals",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "voteCount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "voters",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "weight",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "voted",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "delegate",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vote",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "winnerName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "winnerName_",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "winningProposal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "winningProposal_",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+       
+        const provider = new ethers.providers.Web3Provider(web3.currentProvider);
+
+        signer = provider.getSigner(0);
+        contract = new ethers.Contract("0x960Ce5E04A3529b0167bB151ED86CBbad5321524",abi,signer);
+		
+        var proposalval = document.getElementById("ProposalSelect").value;
+		
+        var castvote = contract.vote(proposalval);
+        
+        castvote.then(function (transaction) {
+			  document.getElementById("metamask").innerHTML = transaction;
+			});
+
+      }
+    </script>
+   
+    <div id="testing"></div>
+    <h1 class="h1">Voting dApp using Solidity and Ether.js</h1>
+    <hr/>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Candidates</th>
+          <th>Symbols</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td id="proposal0name"></td>
+          <td id="proposal1image">
+            <img
+              src="phoenix.png"
+              alt="Phoenix"
+              style="height: 120px; width: 150px; border-radius: 5px"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td id="proposal1name"></td>
+          <td id="proposal2image">
+            <img
+              src="unicorn.png"
+              alt="Unicorn"
+              style="height: 120px; width: 150px; border-radius: 5px"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td id="proposal2name"></td>
+          <td id="proposal2image">
+            <img
+              src="lion.png"
+              alt="Lion"
+              style="height: 120px; width: 150px; border-radius: 5px"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="container">
+      <select id="ProposalSelect">
+        <option value="Candidate_1">Phoenix</option>
+        <option value="Candidate_2">Unicorn</option>
+        <option value="Candidate_3">Lion</option>
+        <option value="NOTA" selected>NOTA</option>
+      </select>
+
+      <input type="button" onclick="vote()" value="VOTE" class="btn" />
+    </div>
+  </body>
+</html>

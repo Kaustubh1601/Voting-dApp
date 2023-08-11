@@ -1,0 +1,64 @@
+body{
+   
+    background-image: url(background.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+h1{
+    text-align: center;
+    color: lightcyan;
+}
+
+.table{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 40%;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+th,td{
+    border: 2px solid black;
+    text-align: center;
+    text-size-adjust: 50px;
+    color: lightcyan;
+    font-weight: 700;
+}
+
+.container{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+#candidates{
+    width: 10%;
+    background-color: lightcyan;
+    height: 30px;
+    width: 120px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.btn{
+    background-color: aqua;
+    margin-left: 20px;
+    width: 80px;
+    height: 30px;
+    font-weight: 700;
+    border-radius: 4px;
+    border: 2px solid black;
+}
+
+#ProposalSelect{
+   border: 2px solid black;
+   border-radius: 4px;
+}
+
+.btn:hover{
+    border-color: white;
+}
+
